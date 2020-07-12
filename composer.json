@@ -1,0 +1,27 @@
+{
+	"name": "doctor/rest",
+	"description": "Doctor REST for implementing REST APIs",
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Pavel Janda",
+			"email": "me@paveljanda.com"
+		}
+	],
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"autoload": {
+		"psr-4": {
+			"Doctor\\Rest\\": "src/"
+		}
+	},
+	"require": {
+		"psr/http-message": "^1.0",
+		"guzzlehttp/psr7": "^1.6",
+		"nikic/fast-route": "^1.3"
+	},
+	"require-dev": {
+		"gamee/php-code-checker-rules": "^2.0"
+	}
+}
