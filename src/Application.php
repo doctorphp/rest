@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Doctor\Rest;
 
-use DI\Container;
+use Doctor\Rest\Controller\ControllerProviderInterface;
 use Doctor\Rest\Response\ResponseSender;
 use Doctor\Rest\Response\ResponseStatus;
 use Doctor\Rest\Response\TextResponse;
@@ -22,7 +22,7 @@ class Application
 {
 
 	private bool $debugMode;
-	private Container $diContainer;
+	private ControllerProviderInterface $controllerProvider;
 	private Router $router;
 	private RequestInterface $request;
 	private ResponseSender $responseSender;
@@ -30,13 +30,13 @@ class Application
 
 	public function __construct(
 		bool $debugMode,
-		Container $diContainer,
+		ControllerProviderInterface $controllerProvider,
 		Router $router,
 		RequestInterface $request,
 		ResponseSender $responseSender
 	) {
 		$this->debugMode = $debugMode;
-		$this->diContainer = $diContainer;
+		$this->controllerProvider = $controllerProvider;
 		$this->router = $router;
 		$this->request = $request;
 		$this->responseSender = $responseSender;
@@ -53,7 +53,9 @@ class Application
 			return;
 		}
 
-		$controller = $this->diContainer->get($match->getRoute()->getControllerClass());
+		$controller = $this->controllerProvider->getByClass(
+			$match->getRoute()->getControllerClass()
+		);
 		$response = $controller->run($match->getMethod(), $match->getParams());
 
 		$this->responseSender->send($response);
