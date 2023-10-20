@@ -12,6 +12,9 @@ namespace Doctor\Rest\Route\Exception;
 final class MethodNotAllowedException extends \Exception
 {
 
+	/**
+	 * @param array<string> $allowedMethods
+	 */
 	public function __construct(string $path, string $method, array $allowedMethods)
 	{
 		parent::__construct(

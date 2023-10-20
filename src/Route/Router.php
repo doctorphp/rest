@@ -45,7 +45,7 @@ final class Router
 	 * @throws MethodNotAllowedException
 	 * @throws InvalidMethodNameException
 	 */
-	public function findMatch(RequestInterface $request): Match
+	public function findMatch(RequestInterface $request): Matched
 	{
 		$dispatcher = FastRoute\cachedDispatcher(
 			function(RouteCollector $routeCollector): void {
@@ -82,7 +82,7 @@ final class Router
 
 				$routeData = ($handler)();
 
-				return new Match(
+				return new Matched(
 					new Route(
 						$routeData[RouterCache::KEY_PATH],
 						$routeData[RouterCache::KEY_CONTROLLER_CLASS]

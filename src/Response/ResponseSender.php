@@ -18,7 +18,7 @@ class ResponseSender
 	{
 		$httpResponse = new PsrResponse(
 			$response->getStatus(),
-			['Conte-Type' => $response->getContentType()],
+			['Conte-Type' => $response->getContentType() ?? 'text/plain'],
 			$response->getResponseData(),
 			'1.1',
 			null

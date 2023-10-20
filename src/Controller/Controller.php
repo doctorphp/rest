@@ -17,8 +17,9 @@ abstract class Controller
 {
 
 	/**
-	 * @theow UndefinedMethodCallException
-	 * @theow InvalidResponseException
+	 * @throws UndefinedMethodCallException
+	 * @throws InvalidResponseException
+	 * @param  array<mixed> $params
 	 */
 	public function run(string $method, array $params): Response
 	{
@@ -28,7 +29,7 @@ abstract class Controller
 			throw new UndefinedMethodCallException(static::class, $method);
 		}
 
-		$response = call_user_func_array([$this, $method], $params);
+		$response = call_user_func_array([$this, $method], $params); // @phpstan-ignore-line
 
 		if (!$response instanceof Response) {
 			throw new InvalidResponseException(static::class, $method);

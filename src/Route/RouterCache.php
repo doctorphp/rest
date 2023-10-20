@@ -18,6 +18,7 @@ final class RouterCache
 
 	private string $cacheFile;
 	private int $routeNumber = 0;
+	/** @var array<string, mixed> */
 	private static array $data = [];
 
 
@@ -63,6 +64,10 @@ final class RouterCache
 	}
 
 
+	/**
+	 * @param array<mixed> $arguments
+	 * @return array<mixed>
+	 */
 	public static function __callStatic(string $name, array $arguments): array
 	{
 		if (!isset(self::$data[$name])) {

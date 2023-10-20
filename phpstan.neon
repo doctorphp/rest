@@ -1,7 +1,6 @@
 includes:
-	- vendor/gamee/php-code-checker-rules/phpstan.neon
+	- vendor/phpstan/phpstan-strict-rules/rules.neon
 
 parameters:
 	ignoreErrors:
-		- '/Parameter #1 \$function of function call_user_func_array expects callable\(\): mixed, array\(\$this\(Doctor\\Rest\\Controller\\Controller\), string\) given\./'
 		- '/Parameter #1 \$argument of class ReflectionClass constructor expects class-string\<T of object\>|T of object, string given\./'

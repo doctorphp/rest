@@ -9,14 +9,18 @@ declare(strict_types=1);
 
 namespace Doctor\Rest\Route;
 
-final class Match
+final class Matched
 {
 
 	private Route $route;
 	private string $method;
+	/** @var array<mixed> */
 	private array $params;
 
 
+	/**
+	 * @param array<mixed> $params
+	 */
 	public function __construct(Route $route, string $method, array $params)
 	{
 		$this->route = $route;
@@ -37,6 +41,9 @@ final class Match
 	}
 
 
+	/**
+	 * @return array<mixed>
+	 */
 	public function getParams(): array
 	{
 		return $this->params;
