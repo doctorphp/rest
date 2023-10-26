@@ -1,11 +1,4 @@
-<?php
-
-declare(strict_types=1);
-
-/**
- * @author Pavel Janda <me@paveljanda.com>
- * @copyright Copyright (c) 2020, Pavel Janda
- */
+<?php declare(strict_types = 1);
 
 namespace Doctor\Rest\Route;
 
@@ -17,10 +10,11 @@ final class RouterCache
 	public const KEY_CONTROLLER_CLASS = 2;
 
 	private string $cacheFile;
+
 	private int $routeNumber = 0;
+
 	/** @var array<string, mixed> */
 	private static array $data = [];
-
 
 	public function __construct(string $cacheDir)
 	{
@@ -31,7 +25,6 @@ final class RouterCache
 			$this->routeNumber = count(self::$data);
 		}
 	}
-
 
 	public function add(string $httpMethod, string $path, string $controllerClass): string
 	{
@@ -46,14 +39,12 @@ final class RouterCache
 		return $key;
 	}
 
-
 	public function clear(): void
 	{
 		@unlink($this->cacheFile); // @ - File may not exist
 		self::$data = [];
 		$this->routeNumber = 0;
 	}
-
 
 	public function store(): void
 	{
@@ -62,7 +53,6 @@ final class RouterCache
 			'<?php return ' . var_export(self::$data, true) . ';'
 		);
 	}
-
 
 	/**
 	 * @param array<mixed> $arguments
@@ -78,4 +68,5 @@ final class RouterCache
 
 		return self::$data[$name];
 	}
+
 }

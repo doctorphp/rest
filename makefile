@@ -4,8 +4,8 @@ stan:
 
 .PHONY: cs
 cs:
-	vendor/bin/phpcs --standard=vendor/gamee/php-code-checker-rules/ruleset.xml --extensions=php,phpt --tab-width=4 --ignore=temp -sp src
+	vendor/bin/phpcs --standard=vendor/contributte/dev/ruleset.xml --extensions=php,phpt --tab-width=4 --ignore=temp -sp src
 
-.PHONY: csfix
-csfix:
-	vendor/bin/phpcbf --standard=vendor/gamee/php-code-checker-rules/ruleset.xml --extensions=php,phpt --tab-width=4 --ignore=temp -sp src
+.PHONY: csf
+csf:
+	vendor/bin/phpcbf --standard=vendor/contributte/dev/ruleset.xml --extensions=php,phpt --tab-width=4 --ignore=temp -sp src

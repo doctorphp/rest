@@ -1,17 +1,10 @@
-<?php
-
-declare(strict_types=1);
-
-/**
- * @author Pavel Janda <me@paveljanda.com>
- * @copyright Copyright (c) 2020, Pavel Janda
- */
+<?php declare(strict_types = 1);
 
 namespace Doctor\Rest\Controller;
 
 use Doctor\Rest\Controller\Exception\InvalidResponseException;
 use Doctor\Rest\Controller\Exception\UndefinedMethodCallException;
-use Doctor\Rest\Response\Response;
+use Psr\Http\Message\ResponseInterface;
 
 abstract class Controller
 {
@@ -21,7 +14,7 @@ abstract class Controller
 	 * @throws InvalidResponseException
 	 * @param  array<mixed> $params
 	 */
-	public function run(string $method, array $params): Response
+	public function run(string $method, array $params): ResponseInterface
 	{
 		$method = strtolower($method);
 
@@ -31,10 +24,11 @@ abstract class Controller
 
 		$response = call_user_func_array([$this, $method], $params); // @phpstan-ignore-line
 
-		if (!$response instanceof Response) {
+		if (!$response instanceof ResponseInterface) {
 			throw new InvalidResponseException(static::class, $method);
 		}
 
 		return $response;
 	}
+
 }

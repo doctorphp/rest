@@ -1,11 +1,4 @@
-<?php
-
-declare(strict_types=1);
-
-/**
- * @author Pavel Janda <me@paveljanda.com>
- * @copyright Copyright (c) 2020, Pavel Janda
- */
+<?php declare(strict_types = 1);
 
 namespace Doctor\Rest\Controller\Exception;
 
@@ -18,4 +11,5 @@ final class UndefinedMethodCallException extends \Exception
 			sprintf('Undefined method call: %s::%s()', $controllerClass, $method)
 		);
 	}
+
 }

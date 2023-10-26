@@ -1,11 +1,4 @@
-<?php
-
-declare(strict_types=1);
-
-/**
- * @author Pavel Janda <me@paveljanda.com>
- * @copyright Copyright (c) 2020, Pavel Janda
- */
+<?php declare(strict_types = 1);
 
 namespace Doctor\Rest\Response;
 
@@ -84,4 +77,5 @@ final class ResponseStatus
 	public const STATUS_510_NOT_EXTENDED = 510;
 	public const STATUS_511_NETWORK_AUTHENTICATION_REQUIRED = 511;
 	public const STATUS_599_NETWORK_CONNECT_TIMEOUT_ERROR = 599;
+
 }

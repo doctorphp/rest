@@ -1,11 +1,4 @@
-<?php
-
-declare(strict_types=1);
-
-/**
- * @author Pavel Janda <me@paveljanda.com>
- * @copyright Copyright (c) 2020, Pavel Janda
- */
+<?php declare(strict_types = 1);
 
 namespace Doctor\Rest\Route;
 
@@ -22,23 +15,25 @@ final class Router
 {
 
 	private string $cacheDir;
-	private bool $debugMode;
-	private RouteCollection $routeCollection;
-	private RouterCache $routerCache;
 
+	private bool $debugMode;
+
+	private RouteCollection $routeCollection;
+
+	private RouterCache $routerCache;
 
 	public function __construct(
 		string $cacheDir,
 		bool $debugMode,
 		RouteCollection $routeCollection,
 		RouterCache $routerCache
-	) {
+	)
+	{
 		$this->cacheDir = $cacheDir;
 		$this->debugMode = $debugMode;
 		$this->routeCollection = $routeCollection;
 		$this->routerCache = $routerCache;
 	}
-
 
 	/**
 	 * @throws RouteNotFoundException
@@ -48,7 +43,7 @@ final class Router
 	public function findMatch(RequestInterface $request): Matched
 	{
 		$dispatcher = FastRoute\cachedDispatcher(
-			function(RouteCollector $routeCollector): void {
+			function (RouteCollector $routeCollector): void {
 				$this->discoverRoutes($routeCollector);
 			},
 			[
@@ -68,14 +63,12 @@ final class Router
 					$request->getUri()->getPath(),
 					$request->getMethod()
 				);
-
 			case Dispatcher::METHOD_NOT_ALLOWED:
 				throw new MethodNotAllowedException(
 					$request->getUri()->getPath(),
 					$request->getMethod(),
 					$routeInfo[1]
 				);
-
 			case Dispatcher::FOUND:
 				$handler = $routeInfo[1];
 				$vars = $routeInfo[2];
@@ -90,12 +83,10 @@ final class Router
 					$request->getMethod(),
 					$vars
 				);
-
 			default:
-				throw new \UnexpectedValueException;
+				throw new \UnexpectedValueException();
 		}
 	}
-
 
 	private function discoverRoutes(RouteCollector $routeCollector): void
 	{
@@ -138,4 +129,5 @@ final class Router
 
 		$this->routerCache->store();
 	}
+
 }

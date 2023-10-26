@@ -1,15 +1,8 @@
-<?php
-
-declare(strict_types=1);
-
-/**
- * @author Pavel Janda <me@paveljanda.com>
- * @copyright Copyright (c) 2020, Pavel Janda
- */
+<?php declare(strict_types = 1);
 
 namespace Doctor\Rest\Controller\Exception;
 
-use Doctor\Rest\Response\Response;
+use Psr\Http\Message\ResponseInterface;
 
 final class InvalidResponseException extends \Exception
 {
@@ -21,8 +14,9 @@ final class InvalidResponseException extends \Exception
 				'Method %s::%s() has to return a %s instance',
 				$controllerClass,
 				$method,
-				Response::class
+				ResponseInterface::class
 			)
 		);
 	}
+
 }
