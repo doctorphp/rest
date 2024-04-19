@@ -24,6 +24,10 @@ final class RouterCache
 			self::$data = require $this->cacheFile;
 			$this->routeNumber = count(self::$data);
 		}
+
+		if (!file_exists(dirname($this->cacheFile))) {
+			mkdir(dirname($this->cacheFile));
+		}
 	}
 
 	public function add(string $httpMethod, string $path, string $controllerClass): string
