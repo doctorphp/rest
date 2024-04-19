@@ -9,13 +9,16 @@ use Psr\Http\Message\ResponseInterface;
 abstract class Controller
 {
 
+	protected ?array $postData = null;
+
 	/**
 	 * @throws UndefinedMethodCallException
 	 * @throws InvalidResponseException
 	 * @param  array<mixed> $params
 	 */
-	public function run(string $method, array $params): ResponseInterface
+	public function run(string $method, array $params, ?array $postData): ResponseInterface
 	{
+		$this->postData = $postData;
 		$method = strtolower($method);
 
 		if (!method_exists($this, $method)) {
